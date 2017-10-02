@@ -1,0 +1,16 @@
+<div class="container mt-4">
+	<div class="row">
+		<div class="col-sm-8 blog-main">
+
+			<div class="blog-header">
+				<h1 class="blog-title"><%= @post.title %></h1><br>
+			</div>
+
+			<div class="blog-post">
+				<p><%= @post.content %></p><br>
+				<p><span><%= link "Modify", to: post_path(@conn, :edit, @post), class: "btn btn-primary" %></span></p>
+				<p><span><%= link "Back", to: post_path(@conn, :index) %></span></p>
+			</div>
+		</div>
+	</div>
+</div>

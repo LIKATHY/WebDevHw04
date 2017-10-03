@@ -1,0 +1,23 @@
+
+[Unit]
+Description=microblog
+After=network.target
+
+[Service]
+Type=forking
+User=likathy   
+Group=likathy   
+WorkingDirectory=/home/likathy/microblog
+ExecStart=/home/likathy/microblog/ && /home/likathy/microblog/_build/prod/rel/microblog/bin/microblog start
+ExecStop=/home/likathy/microblog/ && /home/likathy/microblog/_build/prod/rel/microblog/bin/microblog stop
+Restart=on-failure
+RestartSec=5
+Environment=PORT=4000
+Environment=LANG=en_US.UTF-8
+SyslogIdentifier=microblog
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+
+

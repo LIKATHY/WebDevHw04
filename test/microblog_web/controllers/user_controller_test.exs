@@ -3,9 +3,9 @@ defmodule MicroblogWeb.UserControllerTest do
 
   alias Microblog.Accounts
 
-  @create_attrs %{email: "some email"}
-  @update_attrs %{email: "some updated email"}
-  @invalid_attrs %{email: nil}
+  @create_attrs %{email: "some email", name: "some name", username: "some username"}
+  @update_attrs %{email: "some updated email", name: "some updated name", username: "some updated username"}
+  @invalid_attrs %{email: nil, name: nil, username: nil}
 
   def fixture(:user) do
     {:ok, user} = Accounts.create_user(@create_attrs)

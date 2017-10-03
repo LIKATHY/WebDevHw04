@@ -1,14 +1,14 @@
 defmodule MicroblogWeb.FollowControllerTest do
   use MicroblogWeb.ConnCase
 
-  alias Microblog.Blog
+  alias Microblog.Accounts
 
   @create_attrs %{}
   @update_attrs %{}
   @invalid_attrs %{}
 
   def fixture(:follow) do
-    {:ok, follow} = Blog.create_follow(@create_attrs)
+    {:ok, follow} = Accounts.create_follow(@create_attrs)
     follow
   end
 

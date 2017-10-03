@@ -1,13 +1,14 @@
-<h2>Show User</h2>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-sm-8 blog-main">
 
-<ul>
+      <div class="blog-header">
+        <h1 class="blog-title">User: <%= @user.name %></h1>
+        <p class="lead blog-description">Username: <%= @user.username %></p>
+        <p class="lead blog-description">Email: <%= @user.email %></p>
+    </div>
+  </div>
+</div>
 
-  <li>
-    <strong>Email:</strong>
-    <%= @user.email %>
-  </li>
-
-</ul>
-
-<span><%= link "Edit", to: user_path(@conn, :edit, @user) %></span>
-<span><%= link "Back", to: user_path(@conn, :index) %></span>
+<p><span><%= link "Edit", to: user_path(@conn, :edit, @user), class: "btn btn-primary btn-xs" %></span></p>
+<p><span><%= link "Back", to: user_path(@conn, :index) %></span></p>

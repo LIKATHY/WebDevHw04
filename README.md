@@ -1,20 +1,21 @@
-# Microblog
+README:
 
-To start your Phoenix server:
+For log in :
+User are able to type in their email into the log in bar.
+Once they hit log in, they are able to see their username instead of the log in bar.
+Once logged in they will also be able to see posts and be able to write new posts.
+Note: users will not be able to create posts unless they are logged in.
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+For post:
+Users are able to create posts by clicking on the Posts in the nav bar and then clicking on New Post link.
+Once clicked, users are able to see the new post link where they will fill in the title and content of the post.
+Once the user submits the post it appears on the Listing Posts. 
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+For Follow:
+Users should be able to follow users by clicking a follow button next to each user's username/name/password.
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+App supports log in and posts (with user requirements and tracking) but does not support follow.
 
-## Learn more
+App probably does not survive VPS reboot.
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+

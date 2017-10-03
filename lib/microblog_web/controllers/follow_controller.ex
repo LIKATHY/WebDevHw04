@@ -1,21 +1,21 @@
 defmodule MicroblogWeb.FollowController do
   use MicroblogWeb, :controller
 
-  alias Microblog.Blog
-  alias Microblog.Blog.Follow
+  alias Microblog.Accounts
+  alias Microblog.Accounts.Follow
 
   def index(conn, _params) do
-    followings = Blog.list_followings()
+    followings = Accounts.list_followings()
     render(conn, "index.html", followings: followings)
   end
 
   def new(conn, _params) do
-    changeset = Blog.change_follow(%Follow{})
+    changeset = Accounts.change_follow(%Follow{})
     render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{"follow" => follow_params}) do
-    case Blog.create_follow(follow_params) do
+    case Accounts.create_follow(follow_params) do
       {:ok, follow} ->
         conn
         |> put_flash(:info, "Follow created successfully.")
@@ -26,20 +26,20 @@ defmodule MicroblogWeb.FollowController do
   end
 
   def show(conn, %{"id" => id}) do
-    follow = Blog.get_follow!(id)
+    follow = Accounts.get_follow!(id)
     render(conn, "show.html", follow: follow)
   end
 
   def edit(conn, %{"id" => id}) do
-    follow = Blog.get_follow!(id)
-    changeset = Blog.change_follow(follow)
+    follow = Accounts.get_follow!(id)
+    changeset = Accounts.change_follow(follow)
     render(conn, "edit.html", follow: follow, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "follow" => follow_params}) do
-    follow = Blog.get_follow!(id)
+    follow = Accounts.get_follow!(id)
 
-    case Blog.update_follow(follow, follow_params) do
+    case Accounts.update_follow(follow, follow_params) do
       {:ok, follow} ->
         conn
         |> put_flash(:info, "Follow updated successfully.")
@@ -50,8 +50,8 @@ defmodule MicroblogWeb.FollowController do
   end
 
   def delete(conn, %{"id" => id}) do
-    follow = Blog.get_follow!(id)
-    {:ok, _follow} = Blog.delete_follow(follow)
+    follow = Accounts.get_follow!(id)
+    {:ok, _follow} = Accounts.delete_follow(follow)
 
     conn
     |> put_flash(:info, "Follow deleted successfully.")

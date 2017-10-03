@@ -11,9 +11,9 @@
 # and so on) as they will fail if something goes wrong.
 
 alias Microblog.Repo
-alias Microblog.Blog.User
+alias Microblog.Accounts.User
 alias Microblog.Blog.Post
-alias Microblog.Blog.Follow
+alias Microblog.Accounts.Follow
 
 Repo.delete_all(User)
 Repo.delete_all(Post)

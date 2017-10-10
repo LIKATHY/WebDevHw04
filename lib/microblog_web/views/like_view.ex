@@ -1,4 +1,5 @@
 defmodule MicroblogWeb.LikeView do
+  # Attribute to part of Professor Nathaniel Tuck's class notes and code
   use MicroblogWeb, :view
   alias MicroblogWeb.LikeView
 

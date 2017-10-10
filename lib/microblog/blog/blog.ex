@@ -1,4 +1,5 @@
-    defmodule Microblog.Blog do
+defmodule Microblog.Blog do
+  # Attribute to part of Professor Nathaniel Tuck's class notes and code
   @moduledoc """
   The Blog context.
   """

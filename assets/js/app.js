@@ -1,3 +1,5 @@
+// Attribute to part of Professor Nathaniel Tuck's class 
+// notes and code.
 // Brunch automatically concatenates all files in your
 // watched paths. Those paths can be configured at
 // config.paths.watched in "brunch-config.js".
@@ -65,14 +67,12 @@ $(function() {
 	var this_user_liked = data_map[window.user_email]
 
 	if (!this_user_liked) {
-		// unlike here
 		$('#like-button').html('Like!')
 	}
 	else {
 		$('#like-button').html('Unlike')
 
 	}
-      
       let html = tmpl(data);
       dd.html(html);
     }

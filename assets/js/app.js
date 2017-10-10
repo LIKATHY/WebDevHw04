@@ -22,6 +22,7 @@ import "phoenix_html"
 
 let handlebars = require("handlebars");
 
+
 $(function() {
   if (!$("#likes-template").length > 0) {
     return;
@@ -35,12 +36,43 @@ $(function() {
   let path = dd.data('path');
   let p_id = dd.data('post_id');
 
-  let bb = $($("#like-add-button")[0]);
-  let u_id = bb.data('user-id');
+  let LikeButton = $($("#like-button")[0]);
+  let u_id = LikeButton.data('user-id');
+  let arraylikes;
+  let data_map;
 
   function fetch_likes() {
     function got_likes(data) {
       console.log(data);
+      arraylikes = data;
+
+      data_map = {}
+      for (var i = data.data.length - 1; i >= 0; i--) {
+      	let like = data.data[i];
+      	data_map[like.user_email] = like
+      }
+
+
+      let deduplicated_data = []
+      for (let email in data_map) {
+      	deduplicated_data.push(data_map[email])    
+      }
+
+      data.data = deduplicated_data
+
+      console.log(data_map, data)
+
+	var this_user_liked = data_map[window.user_email]
+
+	if (!this_user_liked) {
+		// unlike here
+		$('#like-button').html('Like!')
+	}
+	else {
+		$('#like-button').html('Unlike')
+
+	}
+      
       let html = tmpl(data);
       dd.html(html);
     }
@@ -69,7 +101,38 @@ $(function() {
 
   }
 
-  bb.click(add_like);
+  function remove_like() {
+
+  	var u_email_id = data_map[window.user_email].id;
+
+    $.ajax({
+      url: path + '/' + u_email_id, 
+      contentType: "application/json",
+      dataType: "json",
+      method: "DELETE",
+      success: fetch_likes,
+    });
+
+  }
+
+
+  function button_clicked() {
+
+	var this_user_liked = data_map[window.user_email]
+
+	if (this_user_liked) {
+		// unlike here
+		remove_like()
+		$('#like-button').html('Like!')
+	}
+	else {
+		add_like();
+		$('#like-button').html('Unlike')
+
+	}	
+  }
+
+  LikeButton.click(button_clicked);
 
   fetch_likes();
 });

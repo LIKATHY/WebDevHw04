@@ -24,7 +24,7 @@ Yes
 
 
 6. Did you successfully implement live updates? If not, what doesn't work?
-Yes
+Yes, basic version.
 
 
 7. Did Prof. Tuck give you any alternate / additional goals for this assignment?

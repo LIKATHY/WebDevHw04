@@ -1,3 +1,5 @@
+// Attribute to part of Professor Nathaniel Tuck's class 
+// notes and code.
 // NOTE: The contents of this file will only be executed if
 // you uncomment its entry in "assets/js/app.js".
 

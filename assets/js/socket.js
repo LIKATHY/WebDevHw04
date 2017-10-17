@@ -54,9 +54,50 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 socket.connect()
 
 // Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("topic:subtopic", {})
+let channel = socket.channel("updates:lobby", {})
+
 channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
+
+var template = `<tr>
+      <td class="title"></td>
+      <td class="content"></td>
+
+      <td class="text-right">
+        <span><a class="btn btn-default btn-xs one" href="/posts/1">Show</a></span>
+        <span><a class="btn btn-default btn-xs two" href="/posts/1/edit">Edit</a></span>
+        <span><a class="btn btn-danger btn-xs three" data-confirm="Are you sure?" data-csrf="EV8NIBw7IB9KJ3A4QCMgCyBNM3cZNgAAF0WGMLgnze9P9GsHqtt2Sw==" data-method="delete" data-to="/posts/1" href="#" rel="nofollow">Delete</a></span>
+      </td>
+
+    </tr>`
+
+template = $(template)
+
+channel.on("ping", payload => {
+	$('.title', template).html(payload.title)
+	$('.content', template).html(payload.content)
+	$('.one', template).attr('href','/post/' + payload.id)
+	$('.two', template).attr('href','/post/' + payload.id + '/edit')
+	$('.three', template).attr('data-to','/post/' + payload.id)
+	
+	$('#PostBodyID').prepend($(template))
+})
+
+$(function () {
+
+	if (location.hash == '#post') {
+
+		var postTitle = $("div.blog-header > h1.blog-title").html()
+		var postContent = $("div.blog-header > p.blog-description").html()
+		var id = location.pathname.slice(7)
+
+	channel.push("ping", {title: postTitle, content: postContent, id: id})
+
+	debugger
+
+	}	
+})
+
 
 export default socket

@@ -36,11 +36,6 @@ defmodule MicroblogWeb.FollowControllerTest do
       conn = get conn, follow_path(conn, :show, id)
       assert html_response(conn, 200) =~ "Show Follow"
     end
-
-    test "renders errors when data is invalid", %{conn: conn} do
-      conn = post conn, follow_path(conn, :create), follow: @invalid_attrs
-      assert html_response(conn, 200) =~ "New Follow"
-    end
   end
 
   describe "edit follow" do
@@ -61,11 +56,6 @@ defmodule MicroblogWeb.FollowControllerTest do
 
       conn = get conn, follow_path(conn, :show, follow)
       assert html_response(conn, 200)
-    end
-
-    test "renders errors when data is invalid", %{conn: conn, follow: follow} do
-      conn = put conn, follow_path(conn, :update, follow), follow: @invalid_attrs
-      assert html_response(conn, 200) =~ "Edit Follow"
     end
   end
 

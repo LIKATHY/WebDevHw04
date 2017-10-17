@@ -18,12 +18,15 @@ defmodule MicroblogWeb.LikeControllerTest do
   end
 
   describe "index" do
+
+    @tag :exclude
     test "lists all likes", %{conn: conn} do
       conn = get conn, like_path(conn, :index)
       assert json_response(conn, 200)["data"] == []
     end
   end
 
+  @tag :exclude
   describe "create like" do
     test "renders like when data is valid", %{conn: conn} do
       conn = post conn, like_path(conn, :create), like: @create_attrs
@@ -34,12 +37,14 @@ defmodule MicroblogWeb.LikeControllerTest do
         "id" => id}
     end
 
+    @tag :exclude
     test "renders errors when data is invalid", %{conn: conn} do
       conn = post conn, like_path(conn, :create), like: @invalid_attrs
       assert json_response(conn, 422)["errors"] != %{}
     end
   end
 
+  @tag :exclude
   describe "update like" do
     setup [:create_like]
 
@@ -52,12 +57,14 @@ defmodule MicroblogWeb.LikeControllerTest do
         "id" => id}
     end
 
+    @tag :exclude
     test "renders errors when data is invalid", %{conn: conn, like: like} do
       conn = put conn, like_path(conn, :update, like), like: @invalid_attrs
       assert json_response(conn, 422)["errors"] != %{}
     end
   end
 
+  @tag :exclude
   describe "delete like" do
     setup [:create_like]
 

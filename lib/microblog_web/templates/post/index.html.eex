@@ -9,7 +9,7 @@
       <th></th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id = "PostBodyID">
 <%= for post <- @posts do %>
     <tr>
       <td><%= post.title %></td>

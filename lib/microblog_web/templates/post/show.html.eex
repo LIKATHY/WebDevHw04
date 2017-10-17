@@ -47,4 +47,3 @@
 
 <p><span><%= link "Edit", to: post_path(@conn, :edit, @post), class: "btn btn-primary btn-xs" %></span></p>
 <p><span><%= link "Back", to: post_path(@conn, :index) %></span></p>
-

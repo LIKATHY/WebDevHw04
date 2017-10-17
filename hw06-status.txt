@@ -9,7 +9,7 @@ Please answer the following questions and submit the filled-in file to Bottlenos
 Kathy Li Zhang
 
 2. What's the link to your Github repo's releases page?
-https://github.com/LIKATHY/WebDevHw04
+https://github.com/LIKATHY/WebDevHw04/releases/
 
 3. What's the link to your deployed Microblog app?
 http://microblog.kathylizhang.com/

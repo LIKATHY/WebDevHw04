@@ -1,3 +1,4 @@
+#Attribute to Prof Nathaniel Tuck's notes and code
 defmodule Microblog.Mixfile do
   use Mix.Project
 
@@ -41,7 +42,9 @@ defmodule Microblog.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
-      {:distillery, "~> 1.5"}
+      {:distillery, "~> 1.5"},
+      {:comeonin, "~> 4.0"},
+      {:argon2_elixir, "~> 1.2"},
     ]
   end
 

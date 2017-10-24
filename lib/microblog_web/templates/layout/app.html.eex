@@ -25,23 +25,22 @@
     <div class="collapse navbar-collapse" id="main-navbar">
       <ul class="navbar-nav mr-auto">
 
-        <li class="nav-item active">
-          <%= link "Home", to: user_path(@conn, :index), class: "nav-link" %>
-        </li>
 
         <%= if @current_user do %>
         <li class="nav-item active">
           <%= link "My Profile", to: user_path(@conn, :show, @current_user), class: "nav-link"%>
         </li>
-        <% end %>
 
         <li class="nav-item active">
-          <%= link "Followed",to: follow_path(@conn, :index), class: "nav-link" %>
+          <%= link "My Feed", to: post_path(@conn, :index), class: "nav-link" %>
         </li>
 
-        <%= if @current_user do %>
         <li class="nav-item active">
-          <%= link "Posts", to: post_path(@conn, :index), class: "nav-link" %>
+          <%= link "Users", to: user_path(@conn, :index), class: "nav-link" %>
+        </li>
+
+        <li class="nav-item active">
+          <%= link("Log Out", to: session_path(@conn, :logout), class: "nav-link", method: :delete) %>
         </li>
         <% end %>
 
@@ -51,11 +50,7 @@
         </li>
         <% end %>
 
-        <%= if @current_user do %>
-        <li class="nav-item active">
-          <%= link("Log Out", to: session_path(@conn, :logout), class: "nav-link", method: :delete) %>
-        </li>
-        <% end %>
+
       </ul>
     </div>
 

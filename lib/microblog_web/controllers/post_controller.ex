@@ -6,7 +6,8 @@ defmodule MicroblogWeb.PostController do
 
   def index(conn, _params) do
     posts = Blog.list_posts()
-    render(conn, "index.html", posts: posts)
+    changeset = Blog.change_post(%Post{})
+    render(conn, "index.html", posts: posts, changeset: changeset)
   end
 
   def new(conn, _params) do
@@ -19,7 +20,8 @@ defmodule MicroblogWeb.PostController do
       {:ok, post} ->
         conn
         |> put_flash(:info, "Post created successfully.")
-        |> redirect(to: Enum.join([post_path(conn, :show,           post), "#post"], ""))
+        |> redirect(to: Enum.join([post_path(conn, :show, post), "#post"], ""))
+        # |> redirect(to: post_path(conn, :index))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end

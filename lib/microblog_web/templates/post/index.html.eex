@@ -1,6 +1,12 @@
-<h2>Listing Posts</h2>
+<h1>My Feed!</h1><br>
+<body>
+  <div class="container">
+    <h2>Create New Post!</h2>
+    <%= render "form.html", Map.put(assigns, :action, post_path(@conn, :create)) %>
+  </div><br>
 
 <table class="table">
+  <h2> All Posts!</h2>
   <thead>
     <tr>
       <th>Title</th>
@@ -10,19 +16,20 @@
     </tr>
   </thead>
   <tbody id = "PostBodyID">
-<%= for post <- @posts do %>
-    <tr>
-      <td><%= post.title %></td>
-      <td><%= post.content %></td>
+    <%= for post <- @posts do %>
+        <tr>
+          <td><%= post.title %></td>
+          <td><%= post.content %></td>
 
-      <td class="text-right">
-        <span><%= link "Show", to: post_path(@conn, :show, post), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: post_path(@conn, :edit, post), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: post_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
-      </td>
-    </tr>
-<% end %>
+          <td class="text-right">
+            <span><%= link "Show", to: post_path(@conn, :show, post), class: "btn btn-default btn-xs" %></span>
+            <span><%= link "Edit", to: post_path(@conn, :edit, post), class: "btn btn-default btn-xs" %></span>
+            <span><%= link "Delete", to: post_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+          </td>
+        </tr>
+    <% end %>
   </tbody>
 </table>
 
 <span><%= link "New Post", to: post_path(@conn, :new) %></span>
+</body>

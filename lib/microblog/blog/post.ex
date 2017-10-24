@@ -7,7 +7,7 @@ defmodule Microblog.Blog.Post do
   schema "posts" do
     field :content, :string
     field :title, :string
-    field :user_id, :id
+    belongs_to :user, Microblog.Accounts.User
 
     timestamps()
   end

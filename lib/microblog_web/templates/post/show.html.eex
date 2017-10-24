@@ -44,7 +44,7 @@
     </div>
   </div>
 </div>
-<%= if (@post.user_id==@current_user.id )|| (@current_user.is_admin?) do %>
+<%= if (@current_user.is_admin?) || (@current_user.id == @post.user_id) do %>
 	<p><span><%= link "Edit", to: post_path(@conn, :edit, @post), class: "btn btn-primary btn-xs" %></span></p>
 <% end %>
 <p><span><%= link "Back", to: post_path(@conn, :index) %></span></p>

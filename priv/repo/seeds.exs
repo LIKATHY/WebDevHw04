@@ -21,6 +21,7 @@ Repo.delete_all(Follow)
 
 kathy = Repo.insert!(%User{name: "Kathy Li Zhang", username: "happylikathy", email: "happylikathy@hotmail.com"})
 michael = Repo.insert!(%User{name: "Michael Wang", username: "vegeta", email: "wang.mich@husky.neu.edu"})
+Repo.insert!(%User{name: "Admin", username: "Admin", email: "admin@admin.com", is_admin?: true})
 Repo.insert!(%Post{title: "Post", content: "I am a post!", user_id: kathy.id})
 Repo.insert!(%Post{title: "Vegeta <3", content: "I love Vegeta!", user_id: michael.id})
 Repo.insert!(%Follow{user_id: kathy.id, follower_user_id: michael.id})

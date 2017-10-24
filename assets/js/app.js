@@ -14,16 +14,16 @@
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
 import "phoenix_html"
-
+import markdown from 'markdown'
 // Import local files
 //
 // Local files can be imported directly using relative
 // paths "./socket" or full ones "web/static/js/socket".
-
 import socket from "./socket"
 
 let handlebars = require("handlebars");
 
+console.log(markdown)
 
 $(function() {
   if (!$("#likes-template").length > 0) {
@@ -135,4 +135,21 @@ $(function() {
   LikeButton.click(button_clicked);
 
   fetch_likes();
+
+  
+
+
 });
+
+$(function() {
+    var postContent = $('.postContent')
+    for (var i = postContent.length - 1; i >= 0; i--) {
+      var showThis = markdown.markdown.toHTML(postContent[i].innerText)
+      postContent[i].innerHTML = showThis
+    }
+  }  )
+
+$(function() {
+    var showContent = $('.showContent')
+      showContent[0].innerHTML = markdown.markdown.toHTML(showContent[0].innerText)
+    })

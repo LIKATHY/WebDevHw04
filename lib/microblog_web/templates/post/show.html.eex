@@ -10,7 +10,7 @@
 
       <div class="blog-header">
         <h1 class="blog-title"><%= @post.title %></h1>
-        <p class="lead blog-description"><%= @post.content %></p>
+        <p class="showContent"><%= @post.content %></p>
 
         <div id="like-bar">
         <div id="post-likes"
@@ -44,6 +44,7 @@
     </div>
   </div>
 </div>
-
-<p><span><%= link "Edit", to: post_path(@conn, :edit, @post), class: "btn btn-primary btn-xs" %></span></p>
+<%= if (@post.user_id==@current_user.id )|| (@current_user.is_admin?) do %>
+	<p><span><%= link "Edit", to: post_path(@conn, :edit, @post), class: "btn btn-primary btn-xs" %></span></p>
+<% end %>
 <p><span><%= link "Back", to: post_path(@conn, :index) %></span></p>

@@ -11,8 +11,6 @@ defmodule Microblog.Accounts.User do
     field :username, :string
 
     field :password_hash, :string
-    field :pw_tries, :integer
-    field :pw_last_try, :utc_datetime
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
     timestamps()

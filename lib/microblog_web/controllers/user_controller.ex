@@ -1,3 +1,4 @@
+# Attribute to Prof Nathaniel Tuck's class notes and code
 defmodule MicroblogWeb.UserController do
   use MicroblogWeb, :controller
 
@@ -10,8 +11,14 @@ defmodule MicroblogWeb.UserController do
   end
 
   def new(conn, _params) do
-    changeset = Accounts.change_user(%User{})
-    render(conn, "new.html", changeset: changeset)
+    current_user = conn.assigns[:current_user]
+    if !current_user do 
+      changeset = Accounts.change_user(%User{})
+      render(conn, "new.html", changeset: changeset)
+    else
+      conn 
+      |> redirect(to: "/posts")
+    end
   end
 
   def create(conn, %{"user" => user_params}) do
@@ -58,3 +65,5 @@ defmodule MicroblogWeb.UserController do
     |> redirect(to: user_path(conn, :index))
   end
 end
+
+

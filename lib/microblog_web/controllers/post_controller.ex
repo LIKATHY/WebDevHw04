@@ -1,3 +1,4 @@
+# Attribute to Prof Nathaniel Tuck's class notes and code and Christine Chen's redirect
 defmodule MicroblogWeb.PostController do
   use MicroblogWeb, :controller
 
@@ -5,14 +6,33 @@ defmodule MicroblogWeb.PostController do
   alias Microblog.Blog.Post
 
   def index(conn, _params) do
-    posts = Blog.list_posts()
-    changeset = Blog.change_post(%Post{})
-    render(conn, "index.html", posts: posts, changeset: changeset)
+  posts = Blog.list_posts()
+  current_user = conn.assigns[:current_user]
+    if current_user do
+      users = Enum.map(posts, fn(s) -> s.user_id end)
+      posts = Blog.list_posts()
+      changeset = Blog.change_post(%Post{})
+      render(conn, "index.html", posts: posts, changeset: changeset)
+    else
+      conn 
+      |> redirect(to: "/users/new")
+      |> halt()
+    end
   end
 
   def new(conn, _params) do
-    changeset = Blog.change_post(%Post{})
-    render(conn, "new.html", changeset: changeset)
+  posts = Blog.list_posts()
+  current_user = conn.assigns[:current_user]
+  conn.assigns[:current_user]
+  users = Enum.map(posts, fn(s) -> s.user_id end)
+    if current_user do 
+      changeset = Blog.change_post(%Post{})
+      render(conn, "new.html", users: users, changeset: changeset)
+    else
+      conn 
+      |> redirect(to: "/users/new")
+      |> halt()
+    end
   end
 
   def create(conn, %{"post" => post_params}) do
@@ -34,8 +54,18 @@ defmodule MicroblogWeb.PostController do
 
   def edit(conn, %{"id" => id}) do
     post = Blog.get_post!(id)
-    changeset = Blog.change_post(post)
-    render(conn, "edit.html", post: post, changeset: changeset)
+    posts = Blog.list_posts()
+    current_user = conn.assigns[:current_user]
+    conn.assigns[:current_user]
+    users = Enum.map(posts, fn(s) -> s.user_id end)
+      if current_user && current_user==post.user_id do 
+        changeset = Blog.change_post(post)
+        render(conn, "edit.html", post: post, changeset: changeset)
+      else
+        conn 
+        |> redirect(to: "/users/new")
+        |> halt()
+      end
   end
 
   def update(conn, %{"id" => id, "post" => post_params}) do

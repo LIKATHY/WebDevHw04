@@ -1,28 +1,37 @@
-<h2>Listing Users</h2>
+<!DOCTYPE html>
+<html lang="en">
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Username</th>
-      <th>Email</th>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Users</title>
+  </head>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for user <- @users do %>
-    <tr>
-      <td><%= user.name %></td>
-      <td><%= user.username %></td>
-      <td><%= user.email %></td>
+  <body>
+    <section class="jumbotron text-center">
+      <div class="container">
+        <h1 class="jumbotron-heading">Discover Users!</h1>
+      </div>
+    </section>
 
-      <td class="text-right">
-        <span><%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %></span>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
 
-<span><%= link "New User", to: user_path(@conn, :new) %></span>
+     <center> <div class="col-lg-8">
+
+
+       <%= for user <- @users do %>
+          <div class="p-3 mb-2 text-black" style="border-radius: 25px; border-color: #0c5460;border-width: 1px; border-style: solid;">
+              <h2>Username: <%= user.username %></h2>
+              <p>Name: <%= user.name %></p>
+              <p>Email: <%= user.email %> </p>
+
+              <p class="text-right">
+                <span><%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-primary btn-xs" %></span>
+              </p>
+            </div>
+        <% end %>
+
+        </div>
+      </center>
+
+  </body>
+</html>

@@ -136,9 +136,6 @@ $(function() {
 
   fetch_likes();
 
-  
-
-
 });
 
 $(function() {

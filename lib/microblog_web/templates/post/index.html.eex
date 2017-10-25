@@ -1,38 +1,48 @@
-<h1>My Feed!</h1><br>
-<body>
-  <div class="container">
-    <h2>Create New Post!</h2>
-    <%= render "form.html", Map.put(assigns, :action, post_path(@conn, :create)) %>
-  </div><br>
+<!DOCTYPE html>
+<html lang="en">
 
-<table class="table">
-  <h2> All Posts!</h2>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>My Feed</title>
+  </head>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody id = "PostBodyID">
-    <%= for post <- @posts do %>
-        <tr>
-          <td><%= post.title %></td>
-          <td class="postContent"><%= post.content %></td>
+  <body>
+    <section class="jumbotron text-center">
+      <div class="container">
+        <h1 class="jumbotron-heading">My Feed!</h1>
+        <p class="lead text-muted">Discover what everyone's been up to!</p>
+      </div>
+    </section>
 
-          <td class="text-right">
-            <span><%= link "Show", to: post_path(@conn, :show, post), class: "btn btn-default btn-xs" %></span>
-            <%= if (@current_user.is_admin?) || (@current_user.id == post.user_id) do %>
-              <span><%= link "Edit", to: post_path(@conn, :edit, post), class: "btn btn-default btn-xs" %></span>
-              <span><%= link "Delete", to: post_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
-            <% end %>
+    <div class="container">
+      <main role="main">
 
-          </td>
-        </tr>
-    <% end %>
-  </tbody>
-</table>
+          <div class="col-sm-10 mx-auto">
+            <h2>Share a new post with everyone!</h2>
+            <%= render "form.html", Map.put(assigns, :action, post_path(@conn, :create)) %>
 
-<span><%= link "New Post", to: post_path(@conn, :new) %></span>
-</body>
+      </main>
+    </div><br>
+
+     <center> <div class="col-lg-8">
+        <%= for post <- @posts do %>
+          <div class="p-3 mb-2 text-black" style="border-radius: 25px; border-color: #0c5460;border-width: 1px; border-style: solid;">
+              <h2><%= post.title %></h2>
+              <p class="postContent"><%= post.content %></p>
+
+              <p class="text-right">
+                <span><%= link "Show", to: post_path(@conn, :show, post), class: "btn btn-primary btn-xs" %></span>
+                <%= if (@current_user.is_admin?) || (@current_user.id == post.user_id) do %>
+                  <span><%= link "Edit", to: post_path(@conn, :edit, post), class: "btn btn-primary btn-xs" %></span>
+                  <span><%= link "Delete", to: post_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+                <% end %>
+              </p>
+            </div>
+        <% end %>
+        </div>
+      </center>
+      <span><%= link "New Post", to: post_path(@conn, :new) %></span>
+  </body>
+</html>
+

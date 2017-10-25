@@ -25,6 +25,9 @@
     <div class="collapse navbar-collapse" id="main-navbar">
       <ul class="navbar-nav mr-auto">
 
+        <li class="nav-item active">
+          <%= link "Users", to: user_path(@conn, :index), class: "nav-link" %>
+        </li>
 
         <%= if @current_user do %>
         <li class="nav-item active">
@@ -33,10 +36,6 @@
 
         <li class="nav-item active">
           <%= link "My Feed", to: post_path(@conn, :index), class: "nav-link" %>
-        </li>
-
-        <li class="nav-item active">
-          <%= link "Users", to: user_path(@conn, :index), class: "nav-link" %>
         </li>
 
         <li class="nav-item active">
@@ -86,14 +85,12 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-sm-8">
         <%= render @view_module, @view_template, assigns %>
-      </div>
-    </div>
 
-  </div> <!-- container -->
+
+  </div>
 
   <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
 </body>
+
 </html>
